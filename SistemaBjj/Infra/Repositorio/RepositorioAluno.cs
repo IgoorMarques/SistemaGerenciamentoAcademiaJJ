@@ -1,7 +1,9 @@
 ﻿using Domain.Interfaces.Generics;
 using Domain.Interfaces.IAluno;
 using Entities.Entidades;
+using Infra.Configuracao;
 using Infra.Repositorio.Generics;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +14,27 @@ namespace Infra.Repositorio
 {
     public class RepositorioAluno : RepositorioGenerics<Aluno>, InterfaceAluno
     {
-        public Task<Aluno> BuscarAlunoID(int id)
+        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
+        public RepositorioAluno()
         {
-            throw new NotImplementedException();
+            _OptionsBuilder = new DbContextOptions<ContextBase>();
+        }
+        public async Task<Aluno> BuscarAlunoID(int id)
+        {
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.alunos
+                    .Where(A => A.AlunoID.Equals(id))
+                    .FirstOrDefaultAsync();
+            }
         }
 
-        public Task<IList<Aluno>> ListarTodosAlunos()
+        public async Task<IList<Aluno>> ListarTodosAlunos()
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.alunos.AsNoTracking().ToListAsync();
+            }
         }
     }
 }

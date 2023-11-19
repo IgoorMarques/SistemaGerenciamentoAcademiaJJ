@@ -1,7 +1,9 @@
 ﻿using Domain.Interfaces.ICompeticao;
 using Domain.Interfaces.IParticipacaoCompeticao;
 using Entities.Entidades;
+using Infra.Configuracao;
 using Infra.Repositorio.Generics;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +14,49 @@ namespace Infra.Repositorio
 {
     public class RepositorioParticipacaoCompeticao : RepositorioGenerics<ParticipacaoCompeticao>, InterfaceParticipacaoCompeticao
     {
+        private readonly DbContextOptions<ContextBase> _OptionsBuider;
+        public RepositorioParticipacaoCompeticao()
+        {
+            _OptionsBuider = new DbContextOptions<ContextBase>();   
+        }
         public async Task<IList<ParticipacaoCompeticao>> ListarInscricoesNaoPagas()
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuider))
+            {
+                return await banco.participacaoCompeticaos
+                    .Where(PC => PC.StatusInscricao.Equals("Pendente"))
+                    .AsNoTracking().ToListAsync();
+            }
         }
 
-        public Task<IList<ParticipacaoCompeticao>> ListarInscricoesPaga()
+        public async Task<IList<ParticipacaoCompeticao>> ListarInscricoesPaga()
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuider))
+            {
+                return await banco.participacaoCompeticaos
+                    .Where(PT => PT.StatusInscricao.Equals("Pago"))
+                    .AsNoTracking().ToListAsync();
+            }
         }
 
-        public Task<IList<ParticipacaoCompeticao>> ListarTodosAlunosEmCompeticacaoEspecifica(int competicaoID)
+        public async Task<IList<Aluno>> ListarTodosAlunosEmCompeticacaoEspecifica(int competicaoID)
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuider))
+            {
+                return await (from PC in banco.participacaoCompeticaos
+                              join A in banco.alunos on PC.AlunoID equals A.AlunoID
+                              select A).AsNoTracking().ToListAsync();
+            }
         }
 
-        public Task<int> TotalDeAlunosCompeticaoEspefica(int competicaoID)
+        public async Task<int> TotalDeAlunosCompeticaoEspefica(int competicaoID)
         {
-            throw new NotImplementedException();
+            using(var banco = new ContextBase(_OptionsBuider))
+            {
+                return await (from PC in banco.participacaoCompeticaos
+                              join A in banco.alunos on PC.AlunoID equals A.AlunoID
+                              select A).AsNoTracking().CountAsync();
+            }
         }
     }
 }

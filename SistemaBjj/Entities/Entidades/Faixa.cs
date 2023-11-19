@@ -12,6 +12,6 @@ namespace Entities.Entidades
     public class Faixa
     {
         public int FaixaID { get; set; }
-        public EnumFaixa Descricao { get; set; }
+        public String Descricao { get; set; }
     }
 }

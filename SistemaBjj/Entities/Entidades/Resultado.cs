@@ -12,6 +12,6 @@ namespace Entities.Entidades
     public class Resultado
     {
         public int ResultadoID { get; set; }
-        public EnumResultado Descricao { get; set; }
+        public string Descricao { get; set; }
     }
 }

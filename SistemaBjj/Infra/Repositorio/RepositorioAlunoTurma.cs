@@ -1,7 +1,9 @@
 ﻿using Domain.Interfaces.IAlunoTurma;
 using Domain.Interfaces.ITurma;
 using Entities.Entidades;
+using Infra.Configuracao;
 using Infra.Repositorio.Generics;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +14,23 @@ namespace Infra.Repositorio
 {
     public class RepositorioAlunoTurma : RepositorioGenerics<AlunoTurma>, InterfaceAlunoTurma
     {
-        public Task<AlunoTurma> BuscarTumaPorID()
+        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
+
+        public RepositorioAlunoTurma()
         {
-            throw new NotImplementedException();
+            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public Task<IList<AlunoTurma>> ListarTodasAsTurmas()
+        public async Task<IList<Aluno>> ListarTodosAlunosTurmaEspecifica(int turmaID)
         {
-            throw new NotImplementedException();
-        }
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await(from AT in banco.alunosTurmas
+                             join A in banco.alunos on AT.AlunoID equals A.AlunoID
+                             select A).AsNoTracking().ToListAsync();
 
-        public Task<IList<AlunoTurma>> ListarTodosAlunosTurmaEspecifica(int turmaID)
-        {
-            throw new NotImplementedException();
+
+            }
         }
     }
 }

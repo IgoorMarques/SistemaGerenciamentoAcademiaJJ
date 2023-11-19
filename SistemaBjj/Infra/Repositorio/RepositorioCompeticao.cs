@@ -1,6 +1,8 @@
 ﻿using Domain.Interfaces.ICompeticao;
 using Entities.Entidades;
+using Infra.Configuracao;
 using Infra.Repositorio.Generics;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +13,29 @@ namespace Infra.Repositorio
 {
     public class RepositorioCompeticao : RepositorioGenerics<Competicao>, InterfaceCompeticao
     {
-        public Task<Competicao> BuscarCompeticaoID(int competicaoID)
+
+        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
+
+        public RepositorioCompeticao()
         {
-            throw new NotImplementedException();
+            _OptionsBuilder = new DbContextOptions<ContextBase>();
+        }
+        public async Task<Competicao> BuscarCompeticaoID(int competicaoID)
+        {
+            using( var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.competicaos
+                    .Where(C => C.CompeticaoID.Equals(competicaoID))
+                    .FirstOrDefaultAsync();
+            }
         }
 
-        public Task<IList<Competicao>> ListarTodasCompeticoes()
+        public async Task<IList<Competicao>> ListarTodasCompeticoes()
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.competicaos.AsNoTracking().ToListAsync();
+            }
         }
     }
 }

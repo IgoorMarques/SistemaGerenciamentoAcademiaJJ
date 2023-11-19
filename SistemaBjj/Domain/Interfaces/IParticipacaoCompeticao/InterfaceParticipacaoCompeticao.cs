@@ -10,7 +10,7 @@ namespace Domain.Interfaces.IParticipacaoCompeticao
 {
     public interface InterfaceParticipacaoCompeticao : InterfaceGeneric<ParticipacaoCompeticao>
     {
-        Task<IList<ParticipacaoCompeticao>> ListarTodosAlunosEmCompeticacaoEspecifica(int competicaoID);
+        Task<IList<Aluno>> ListarTodosAlunosEmCompeticacaoEspecifica(int competicaoID);
         Task<IList<ParticipacaoCompeticao>> ListarInscricoesPaga();
         Task<IList<ParticipacaoCompeticao>> ListarInscricoesNaoPagas();
         Task<int> TotalDeAlunosCompeticaoEspefica(int competicaoID);

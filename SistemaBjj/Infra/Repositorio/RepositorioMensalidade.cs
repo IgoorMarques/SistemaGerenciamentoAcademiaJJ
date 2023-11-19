@@ -1,6 +1,8 @@
 ﻿using Domain.Interfaces.IMensalidade;
 using Entities.Entidades;
+using Infra.Configuracao;
 using Infra.Repositorio.Generics;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +13,58 @@ namespace Infra.Repositorio
 {
     public class RepositorioMensalidade : RepositorioGenerics<Mensalidade>, InterfaceMensalidade
     {
-        public Task<Mensalidade> BuscarMensalidadeID(int mensalidadeID)
+        private readonly DbContextOptions<ContextBase> _OptionsBuilder;
+        public RepositorioMensalidade()
         {
-            throw new NotImplementedException();
+            _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public Task<IList<Mensalidade>> ListarMensalidadesPagas()
+        public async Task<Mensalidade> BuscarMensalidadeID(int mensalidadeID)
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.mensalidades
+                    .Where(M => M.MensalidadeID.Equals(mensalidadeID))
+                    .FirstOrDefaultAsync();
+            }
         }
 
-        public Task<IList<Mensalidade>> ListarMensalidadesPendentes()
+        public async Task<IList<Mensalidade>> ListarMensalidadesPagas()
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.mensalidades
+                    .Where(MP => MP.Status.Equals("Paga"))
+                    .AsNoTracking().ToListAsync();
+            }
         }
 
-        public Task<IList<Mensalidade>> ListarMensalidadesVencidas()
+        public async Task<IList<Mensalidade>> ListarMensalidadesPendentes()
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.mensalidades
+                    .Where(MPT => MPT.Status.Equals("Pendente"))
+                    .AsNoTracking().ToListAsync();
+            }
         }
 
-        public Task<IList<Mensalidade>> ListarTodasMensalidades()
+        public async Task<IList<Mensalidade>> ListarMensalidadesVencidas()
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.mensalidades
+                    .Where(MM => MM.Status.Equals("Vencida"))
+                    .AsNoTracking().ToListAsync();
+            }
+        }
+
+        public async Task<IList<Mensalidade>> ListarTodasMensalidades()
+        {
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                return await banco.mensalidades.AsNoTracking().ToListAsync();
+            }
         }
     }
 }

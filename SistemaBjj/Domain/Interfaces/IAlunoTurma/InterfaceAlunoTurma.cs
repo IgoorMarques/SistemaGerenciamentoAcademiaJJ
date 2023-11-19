@@ -10,8 +10,6 @@ namespace Domain.Interfaces.IAlunoTurma
 {
     public interface InterfaceAlunoTurma : InterfaceGeneric<AlunoTurma>
     {
-        Task<IList<AlunoTurma>> ListarTodasAsTurmas();
-        Task<AlunoTurma> BuscarTumaPorID();
-        Task<IList<AlunoTurma>> ListarTodosAlunosTurmaEspecifica(int turmaID);
+        Task<IList<Aluno>> ListarTodosAlunosTurmaEspecifica(int turmaID);
     }
 }

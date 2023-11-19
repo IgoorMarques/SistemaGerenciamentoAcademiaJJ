@@ -1,5 +1,15 @@
 using Domain.Interfaces.Generics;
 using Domain.Interfaces.IAcademia;
+using Domain.Interfaces.IAluno;
+using Domain.Interfaces.IAlunoTurma;
+using Domain.Interfaces.ICompeticao;
+using Domain.Interfaces.IFaixa;
+using Domain.Interfaces.IMensalidade;
+using Domain.Interfaces.IParticipacaoCompeticao;
+using Domain.Interfaces.IPodio;
+using Domain.Interfaces.IProfessor;
+using Domain.Interfaces.IResultado;
+using Domain.Interfaces.ITurma;
 using Entities.Entidades;
 using Infra.Configuracao;
 using Infra.Repositorio;
@@ -21,10 +31,17 @@ builder.Services.AddDefaultIdentity<AplicationUser>(options => options.SignIn.Re
 
 
 builder.Services.AddSingleton(typeof(InterfaceGeneric<>), typeof(RepositorioGenerics<>));
-builder.Services.AddSingleton(typeof(InterfaceAcademia), typeof(RepositorioAcademia));
-
-
-
+builder.Services.AddSingleton<InterfaceAcademia, RepositorioAcademia>();
+builder.Services.AddSingleton<InterfaceAluno, RepositorioAluno>();
+builder.Services.AddSingleton<InterfaceAlunoTurma, RepositorioAlunoTurma>();
+builder.Services.AddSingleton<InterfaceCompeticao, RepositorioCompeticao>();
+builder.Services.AddSingleton<InterfaceFaixa, RepositorioFaixa>();
+builder.Services.AddSingleton<InterfaceMensalidade, RepositorioMensalidade>();
+builder.Services.AddSingleton<InterfaceParticipacaoCompeticao, RepositorioParticipacaoCompeticao>();
+builder.Services.AddSingleton<InterfacePodio, RepositorioPodio>();
+builder.Services.AddSingleton<InterfaceProfessor, RepositorioProfessor>();
+builder.Services.AddSingleton<InterfaceResultado, RepositorioResultado>();
+builder.Services.AddSingleton<InterfaceTurma, RepositorioTurma>();
 
 
 

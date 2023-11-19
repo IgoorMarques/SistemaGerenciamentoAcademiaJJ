@@ -10,6 +10,6 @@ namespace Domain.Interfaces.IFaixa
 {
     public interface InterfaceFaixa : InterfaceGeneric<Faixa>
     {
-
+        Task<IList<Faixa>> ListarFaixasDisponivels();
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vB4ku0g0dXuhQ/adTjqG3FTp0EV9jeqMq+lqzi+TQEGOkZGwKyPwjncuntvORVOMCdKWABQZHkPOklRQdWrz6Q==",
+  "dgSpecHash": "o3Mbl+13eAzBKJSDpoxupGawz/jyb+QLgds2rOn7NWgaknjoD0OKCnn9Xo3dgdzBluC7GnK5a2bY6zA4rK2dUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\WebAPI\\WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\irlan\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\irlan\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

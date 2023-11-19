@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5dJqaiqNhpFWd0rvk94hQ+fEkhG5N0WsdThjSKzpIfgBbXpp2ot5FoXCiPiofcptOy81GQipO+xbFTeRep1u7A==",
+  "dgSpecHash": "t44KDEnooSvWX6o34xjEtJU2kJZvFtU5z1LIDJPnQ3S8jdEiXPNayyTqCwp7x2e9fX8G05ogMyuyql2HAiQXHw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Infra\\Infra.csproj",
+  "projectFilePath": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\irlan\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\irlan\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

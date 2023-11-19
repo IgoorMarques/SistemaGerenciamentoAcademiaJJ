@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Entities\\Entities.csproj": {}
+    "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Entities\\Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Entities\\Entities.csproj": {
+    "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\irlan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\irlan\\AppData\\Roaming\\NuGet\\NuGet.Config",

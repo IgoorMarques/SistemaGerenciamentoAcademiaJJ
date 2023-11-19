@@ -14,5 +14,7 @@ namespace Domain.Interfaces.Generics
         Task<T> GetEntityByID(int ID);
         Task<List<T>> List();
 
+        ...
+
     }
 }

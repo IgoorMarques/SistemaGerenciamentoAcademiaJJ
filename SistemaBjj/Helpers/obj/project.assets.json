@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Helpers\\Helpers.csproj",
+      "projectUniqueName": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Helpers\\Helpers.csproj",
       "projectName": "Helpers",
-      "projectPath": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Helpers\\Helpers.csproj",
+      "projectPath": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Helpers\\Helpers.csproj",
       "packagesPath": "C:\\Users\\irlan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Helpers\\obj\\",
+      "outputPath": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Helpers\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\irlan\\AppData\\Roaming\\NuGet\\NuGet.Config",

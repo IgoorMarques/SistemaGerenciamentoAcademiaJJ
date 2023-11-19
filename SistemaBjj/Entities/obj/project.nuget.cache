@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7VqpDJG0bknC/en5wDFmJRbdu3A6CBnsuLxr0rm5uJ7xP4hV7jsnuQdirWu2HMjM1dXgT5pKephbZvXCVFEXjw==",
+  "dgSpecHash": "RHMX3HgNhQv2hVh5Hv6g6VRcsgQPyhzzve2FLAlFcuGDDCbPNsaEHAGRhtl7yA6NXGrpSFziXxsMw5H4b+dUVQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\irlan\\source\\repos\\SistemaBjj\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\irlan\\source\\repos\\SistemaGerenciamentoAcademiaJJ\\SistemaBjj\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\irlan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.14\\microsoft.aspnetcore.cryptography.internal.7.0.14.nupkg.sha512",
     "C:\\Users\\irlan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.14\\microsoft.aspnetcore.cryptography.keyderivation.7.0.14.nupkg.sha512",

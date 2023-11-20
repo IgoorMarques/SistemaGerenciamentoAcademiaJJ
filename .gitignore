@@ -437,3 +437,7 @@ _ReSharper*/
 .vs/
 
 .vs/ProjectEvaluation/sistemabjj.metadata.v7.bin
+/SistemaBjj/.vs/SistemaBjj/DesignTimeBuild/.dtbcache.v2
+/SistemaBjj/.vs/SistemaBjj/v17/.suo
+/SistemaBjj/Domain/Domain.csproj
+/SistemaBjj/Domain/Domain.csproj

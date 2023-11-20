@@ -11,6 +11,7 @@ namespace Entities.Entidades
     public class Podio
     {
         public int PodioID { get; set; }
+
         [ForeignKey("Competicao")]
         public int CompeticaoID { get; set; }
         public Competicao Competicao { get; set; }

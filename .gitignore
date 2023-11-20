@@ -431,3 +431,8 @@ FodyWeavers.xsd
 obj/
 [Rr]elease*/
 _ReSharper*/
+
+
+# .gitignore
+.vs/
+

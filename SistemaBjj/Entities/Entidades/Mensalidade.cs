@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Entities.Entidades
 {
     [Table("Mensalidade")]
-    public class Mensalidade
+    public class Mensalidade : Base
     {
         public int MensalidadeID { get; set; }
         public DateTime DataVencimento { get; set; }

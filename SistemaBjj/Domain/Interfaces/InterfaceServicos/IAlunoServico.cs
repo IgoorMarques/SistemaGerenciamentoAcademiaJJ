@@ -11,7 +11,7 @@ namespace Domain.Interfaces.InterfaceServicos
     {
         Task CadastrarAluno(Aluno aluno);
         Task ExcluirAluno(Aluno aluno);
-        Task EditarAluno(Aluno aluno, int alunoID);
+        Task EditarAluno(Aluno aluno);
 
     }
 }

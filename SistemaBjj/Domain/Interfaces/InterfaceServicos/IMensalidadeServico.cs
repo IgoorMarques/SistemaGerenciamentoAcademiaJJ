@@ -10,7 +10,7 @@ namespace Domain.Interfaces.InterfaceServicos
     public interface IMensalidadeServico
     {
         Task CriarNovaMensalidade(Mensalidade mensalidade);
-        Task AlterarStatusMensalidade(string status, int mensalidadeID);
+        Task AlterarStatusMensalidade(Mensalidade mensalidade);
 
     }
 }

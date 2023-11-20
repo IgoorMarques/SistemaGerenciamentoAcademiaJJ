@@ -10,7 +10,7 @@ namespace Domain.Interfaces.InterfaceServicos
     public interface IProfessorServico
     {
         Task AdicionarNovoProfessor(Professor professor);
-        Task ExcluirProfessor(int professorID);
+        Task ExcluirProfessor(Professor professor);
         Task EditarProfessor(Professor professor, int professorID);
     }
 }

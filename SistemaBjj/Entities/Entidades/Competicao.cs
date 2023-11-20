@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Entities.Entidades
 {
     [Table("Competicao")]
-    public class Competicao
+    public class Competicao : Base
     {
         public int CompeticaoID { get; set; }
         public string Nome { get; set; }

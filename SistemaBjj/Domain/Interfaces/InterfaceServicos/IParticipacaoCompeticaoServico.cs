@@ -9,8 +9,8 @@ namespace Domain.Interfaces.InterfaceServicos
 {
     public interface IParticipacaoCompeticaoServico
     {
-        Task AdicionarAlunoCompeticao(int alunoID, int competicaoID);
-        Task RemoverAlunoCompeticao(int alunoID);
-        Task AlterarStatusInscricaoAluno(int alunoID);
+        Task AdicionarAlunoCompeticao(ParticipacaoCompeticao participacaoCompeticao);
+        Task RemoverAlunoCompeticao(ParticipacaoCompeticao participacaoCompeticao);
+        Task AlterarStatusInscricaoAluno(ParticipacaoCompeticao participacaoCompeticao);
     }
 }

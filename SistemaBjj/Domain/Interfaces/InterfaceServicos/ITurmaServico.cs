@@ -10,7 +10,7 @@ namespace Domain.Interfaces.InterfaceServicos
     public interface ITurmaServico
     {
         Task CriarTurma(Turma turma);
-        Task ExcluirTurma(int turmaID);
+        Task ExcluirTurma(Turma turma);
         Task EditarTurma(Turma turma, int turmaID);
     }
 }

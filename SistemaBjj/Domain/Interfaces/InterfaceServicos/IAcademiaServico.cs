@@ -10,6 +10,6 @@ namespace Domain.Interfaces.InterfaceServicos
     public interface IAcademiaServico
     {
         Task AdicionarAcademia(Academia academia);
-        Task AtualizarCategoria(Academia academia);
+        Task AtualizarCategoria(Academia academia, int academiaID);
     }
 }

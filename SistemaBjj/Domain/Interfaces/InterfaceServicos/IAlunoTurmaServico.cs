@@ -9,7 +9,7 @@ namespace Domain.Interfaces.InterfaceServicos
 {
     public interface IAlunoTurmaServico
     {
-        Task AdicionarAlunoTurma(Aluno aluno, Turma turma);
-        Task RemoverAlunoTurma(Aluno aluno, Turma turma);
+        Task AdicionarAlunoTurma(AlunoTurma alunoTurma);
+        Task RemoverAlunoTurma(AlunoTurma alunoTurma);
     }
 }

@@ -5,11 +5,13 @@ using Domain.Interfaces.IAlunoTurma;
 using Domain.Interfaces.ICompeticao;
 using Domain.Interfaces.IFaixa;
 using Domain.Interfaces.IMensalidade;
+using Domain.Interfaces.InterfaceServicos;
 using Domain.Interfaces.IParticipacaoCompeticao;
 using Domain.Interfaces.IPodio;
 using Domain.Interfaces.IProfessor;
 using Domain.Interfaces.IResultado;
 using Domain.Interfaces.ITurma;
+using Domain.Servicos;
 using Entities.Entidades;
 using Infra.Configuracao;
 using Infra.Repositorio;
@@ -30,6 +32,8 @@ builder.Services.AddDbContext<ContextBase>(
 builder.Services.AddDefaultIdentity<AplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ContextBase>();
 
 
+
+// INTERFACE E REPOSITORIO
 builder.Services.AddSingleton(typeof(InterfaceGeneric<>), typeof(RepositorioGenerics<>));
 builder.Services.AddSingleton<InterfaceAcademia, RepositorioAcademia>();
 builder.Services.AddSingleton<InterfaceAluno, RepositorioAluno>();
@@ -42,6 +46,23 @@ builder.Services.AddSingleton<InterfacePodio, RepositorioPodio>();
 builder.Services.AddSingleton<InterfaceProfessor, RepositorioProfessor>();
 builder.Services.AddSingleton<InterfaceResultado, RepositorioResultado>();
 builder.Services.AddSingleton<InterfaceTurma, RepositorioTurma>();
+
+
+// SERVIÇO DOMINIO
+builder.Services.AddSingleton<IAcademiaServico, AcademiaServico>();
+builder.Services.AddSingleton<IAlunoServico, AlunoServico>();
+builder.Services.AddSingleton<IAlunoTurmaServico, AlunoTurmaServico>();
+builder.Services.AddSingleton<ICompeticaoServico, CompeticaoServico>();
+builder.Services.AddSingleton<IFaixaServico, FaixaServico>();
+builder.Services.AddSingleton<IMensalidadeServico, MensalidadeServico>();
+builder.Services.AddSingleton<IParticipacaoCompeticaoServico, ParticipacaoCompeticaoServico>();
+builder.Services.AddSingleton<IPodioServico, PodioServico>();
+builder.Services.AddSingleton<IProfessorServico, ProfessorServico>();
+builder.Services.AddSingleton<IResultadoServico, ResultadoServico>();
+builder.Services.AddSingleton<ITurmaServico, TurmaServico>();
+
+
+//builder.Services.AddAuthentication(JwtBearerDefaults)
 
 
 

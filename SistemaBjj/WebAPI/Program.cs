@@ -16,7 +16,10 @@ using Entities.Entidades;
 using Infra.Configuracao;
 using Infra.Repositorio;
 using Infra.Repositorio.Generics;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using WebAPI.Token;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +32,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ContextBase>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDefaultIdentity<AplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ContextBase>();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ContextBase>();
 
 
 
@@ -62,7 +65,33 @@ builder.Services.AddSingleton<IResultadoServico, ResultadoServico>();
 builder.Services.AddSingleton<ITurmaServico, TurmaServico>();
 
 
-//builder.Services.AddAuthentication(JwtBearerDefaults)
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(option =>
+    {
+        option.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "Teste.Securiry.Bearer",
+            ValidAudience = "Teste.Securiry.Bearer",
+            IssuerSigningKey = JwtSecurityKey.Create("secret_key-12345678")
+        };
+        option.Events = new JwtBearerEvents
+        {
+            OnAuthenticationFailed = context =>
+            {
+                Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                return Task.CompletedTask;
+            },
+            OnTokenValidated = context =>
+            {
+                Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                return Task.CompletedTask;
+            }
+        };
+    });
 
 
 
@@ -76,6 +105,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//new
+app.UseAuthentication();
 
 app.UseAuthorization();
 

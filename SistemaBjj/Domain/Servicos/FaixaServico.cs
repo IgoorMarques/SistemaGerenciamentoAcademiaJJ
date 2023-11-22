@@ -18,8 +18,8 @@ namespace Domain.Servicos
         }
         public async Task AdicionarNovaFaixa(Faixa faixa)
         {
-            var faixaId = faixa.ValidaPropriedadeINT(faixa.FaixaID, "FaixaID");
-            var faixaD = faixa.ValidaPropriedadeString(faixa.Descricao, "Descricao");
+            var faixaId = faixa.ValidaPropriedadeINT(faixa.Id, "FaixaID");
+            var faixaD = faixa.ValidaPropriedadeString(faixa.Nome, "Descricao");
             if (faixaId && faixaD)
             {
                 await _interfaceFaixa.Add(faixa);

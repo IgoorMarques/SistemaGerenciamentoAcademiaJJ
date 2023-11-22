@@ -25,7 +25,7 @@ namespace Infra.Repositorio
             using( var banco = new ContextBase(_OptionsBuilder))
             {
                 return await banco.competicaos
-                    .Where(C => C.CompeticaoID.Equals(competicaoID))
+                    .Where(C => C.Id.Equals(competicaoID))
                     .FirstOrDefaultAsync();
             }
         }

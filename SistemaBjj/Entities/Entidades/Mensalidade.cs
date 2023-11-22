@@ -10,7 +10,6 @@ namespace Entities.Entidades
     [Table("Mensalidade")]
     public class Mensalidade : Base
     {
-        public int MensalidadeID { get; set; }
         public DateTime DataVencimento { get; set; }
         public DateTime? DataPagamento { get; set; }
         public string Status { get; set; }

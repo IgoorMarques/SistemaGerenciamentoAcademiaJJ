@@ -10,8 +10,6 @@ namespace Entities.Entidades
     [Table("Podio")]
     public class Podio : Base
     {
-        public int PodioID { get; set; }
-
         [ForeignKey("Competicao")]
         public int CompeticaoID { get; set; }
         public Competicao Competicao { get; set; }

@@ -24,8 +24,8 @@ namespace Infra.Repositorio
             using (var banco = new ContextBase(_OptionsBuilder))
             {
                 return await banco.alunos
-                    .Where(A => A.AlunoID.Equals(id))
-                    .FirstOrDefaultAsync();
+                    .Where(A => A.Id.Equals(id))
+                    .FirstAsync();
             }
         }
 

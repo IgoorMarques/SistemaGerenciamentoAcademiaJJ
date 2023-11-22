@@ -10,7 +10,6 @@ namespace Entities.Entidades
     [Table("Professor")]
     public class Professor : Base
     {
-        public int ProfessorID { get; set; }
-        public string Nome { get; set; }
+        
     }
 }

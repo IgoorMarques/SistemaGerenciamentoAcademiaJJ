@@ -10,9 +10,8 @@ namespace Entities.Entidades
     [Table("Aluno")]
     public class Aluno : Base
     {
-        public int AlunoID { get; set; }
         public string CPF { get; set; }
-        public string Nome { get; set; }
+
 
         [ForeignKey("Faixa")]
         [Column(Order = 1)]

@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces.IAluno;
+using Domain.Interfaces.IFaixa;
 using Domain.Interfaces.InterfaceServicos;
 using Entities.Entidades;
 using System;
@@ -12,30 +13,20 @@ namespace Domain.Servicos
     public class AlunoServico : IAlunoServico
     {
         private readonly InterfaceAluno _interfaceAluno;
-        public AlunoServico(InterfaceAluno interfaceAluno)
+        private readonly InterfaceFaixa _interfaceFaixa;
+        public AlunoServico(InterfaceAluno interfaceAluno, InterfaceFaixa interfaceFaixa)
         {
             _interfaceAluno = interfaceAluno;
+            _interfaceFaixa = interfaceFaixa;
         }
+
         public async Task CadastrarAluno(Aluno aluno)
         {
             if(ValidaAluno(aluno))
             {
-                await _interfaceAluno.Add(aluno);
+                var faixa = await _interfaceFaixa.GetEntityByID(aluno.FaixaID);
+                await _interfaceAluno.Add(aluno);  
             }
-            
-        }
-
-        private bool ValidaAluno(Aluno aluno)
-        {
-            var validNome = aluno.ValidaPropriedadeString(aluno.Nome, "Nome");
-            var validCPF = aluno.ValidaPropriedadeString(aluno.CPF, "CPF");
-            var validFaixaID = aluno.ValidaPropriedadeINT(aluno.FaixaID, "FaixaID");
-
-            if (validNome && validCPF && validFaixaID)
-            {
-                return true;
-            }
-            return false;
         }
 
         public async Task EditarAluno(Aluno aluno)
@@ -49,11 +40,23 @@ namespace Domain.Servicos
 
         public async Task ExcluirAluno(Aluno aluno)
         {
-            if (aluno.ValidaPropriedadeINT(aluno.AlunoID, "AlunoID"))
+            if (aluno.ValidaPropriedadeINT(aluno.Id, "AlunoID"))
             {
                 await _interfaceAluno.Delete(aluno);
             }
             
+        }
+        private bool ValidaAluno(Aluno aluno)
+        {
+            var validNome = aluno.ValidaPropriedadeString(aluno.Nome, "Nome");
+            var validCPF = aluno.ValidaPropriedadeString(aluno.CPF, "CPF");
+            var validFaixaID = aluno.ValidaPropriedadeINT(aluno.FaixaID, "FaixaID");
+
+            if (validNome && validCPF && validFaixaID)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

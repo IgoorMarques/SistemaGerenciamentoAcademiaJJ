@@ -24,7 +24,7 @@ namespace Infra.Repositorio
             using (var banco = new ContextBase(_OptionsBuilder))
             {
                 return await banco.mensalidades
-                    .Where(M => M.MensalidadeID.Equals(mensalidadeID))
+                    .Where(M => M.Id.Equals(mensalidadeID))
                     .FirstOrDefaultAsync();
             }
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Entities.Entidades
 {
     [Table("AlunoTurma")]
-    public class AlunoTurma : Base
+    public class AlunoTurma
     {
         [ForeignKey("Aluno")]
         public int AlunoID { get; set; }

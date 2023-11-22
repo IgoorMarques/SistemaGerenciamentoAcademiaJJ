@@ -9,17 +9,15 @@ using System.Threading.Tasks;
 
 namespace Infra.Configuracao
 {
-    public class ContextBase : IdentityDbContext<AplicationUser>
+    public class ContextBase : IdentityDbContext<ApplicationUser>
     {
         public ContextBase(DbContextOptions options) : base(options)
         {
 
         }
-
         public DbSet<Academia> academias { set; get; }
         public DbSet<Aluno> alunos { set; get; }
         public DbSet<AlunoTurma> alunosTurmas { set; get; }
-        
         public DbSet<Competicao> competicaos { set; get; }
         public DbSet<Faixa> faixas { set; get; }
         public DbSet<Mensalidade> mensalidades { set; get; }
@@ -28,7 +26,6 @@ namespace Infra.Configuracao
         public DbSet<Professor> professores { set; get; }
         public DbSet<Resultado> resultados { set; get; }
         public DbSet<Turma> turmas { set; get; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,7 +39,7 @@ namespace Infra.Configuracao
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<AplicationUser>().ToTable("Academia").HasKey(t => t.Id);
+            builder.Entity<ApplicationUser>().ToTable("AspNetUsers").HasKey(t => t.Id);
             builder.Entity<AlunoTurma>().ToTable("AlunoTurma").HasNoKey();
             builder.Entity<ParticipacaoCompeticao>().ToTable("ParticipacaoCompeticao").HasNoKey();
             base.OnModelCreating(builder);

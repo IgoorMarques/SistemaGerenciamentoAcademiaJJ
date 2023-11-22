@@ -20,7 +20,11 @@ namespace Domain.Servicos
 
         private bool ValidadaPC(ParticipacaoCompeticao participacaoCompeticao)
         {
-            return participacaoCompeticao.ValidaPropriedadeString(participacaoCompeticao.StatusInscricao, "StatusInscricao");
+            if (string.IsNullOrWhiteSpace(participacaoCompeticao.StatusInscricao))
+            {
+                return false;
+            }
+            return true;
         }
 
         public async Task AdicionarAlunoCompeticao(ParticipacaoCompeticao participacaoCompeticao)

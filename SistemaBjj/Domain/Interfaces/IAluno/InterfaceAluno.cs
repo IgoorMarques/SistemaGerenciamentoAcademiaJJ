@@ -11,6 +11,5 @@ namespace Domain.Interfaces.IAluno
     public interface InterfaceAluno : InterfaceGeneric<Aluno>
     {
         Task<IList<Aluno>> ListarTodosAlunos();
-        Task<Aluno> BuscarAlunoID(int id);
     }
 }

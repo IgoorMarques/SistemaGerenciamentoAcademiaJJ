@@ -32,12 +32,11 @@ namespace Domain.Servicos
 
         private bool ValidaAlunoTurma(AlunoTurma alunoTurma)
         {
-            var alunoID = alunoTurma.ValidaPropriedadeINT(alunoTurma.AlunoID, "AlunoID");
-            var turmaID = alunoTurma.ValidaPropriedadeINT(alunoTurma.TurmaID, "TurmaID");
-            if (alunoID && turmaID)
-            { return true; }
-            else
-            { return false; }
+            if (alunoTurma.TurmaID < 0 || alunoTurma.AlunoID < 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

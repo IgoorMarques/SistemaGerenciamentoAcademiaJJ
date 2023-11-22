@@ -19,6 +19,7 @@ namespace Infra.Repositorio
         {
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
+
         public async Task<IList<Faixa>> ListarFaixasDisponivels()
         {
             using (var banco = new ContextBase(_OptionsBuilder))

@@ -24,11 +24,11 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Entities.Entidades.Academia", b =>
                 {
-                    b.Property<int>("AcademiaID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcademiaID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -54,18 +54,18 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AcademiaID");
+                    b.HasKey("Id");
 
                     b.ToTable("Academia");
                 });
 
             modelBuilder.Entity("Entities.Entidades.Aluno", b =>
                 {
-                    b.Property<int>("AlunoID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlunoID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CPF")
                         .IsRequired()
@@ -79,7 +79,7 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AlunoID");
+                    b.HasKey("Id");
 
                     b.HasIndex("FaixaID");
 
@@ -101,7 +101,7 @@ namespace Infra.Migrations
                     b.ToTable("AlunoTurma", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Entidades.AplicationUser", b =>
+            modelBuilder.Entity("Entities.Entidades.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -125,6 +125,11 @@ namespace Infra.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("USER_NOME");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -168,11 +173,11 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Entities.Entidades.Competicao", b =>
                 {
-                    b.Property<int>("CompeticaoID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompeticaoID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
@@ -181,35 +186,35 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CompeticaoID");
+                    b.HasKey("Id");
 
                     b.ToTable("Competicao");
                 });
 
             modelBuilder.Entity("Entities.Entidades.Faixa", b =>
                 {
-                    b.Property<int>("FaixaID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FaixaID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("FaixaID");
+                    b.HasKey("Id");
 
                     b.ToTable("Faixa");
                 });
 
             modelBuilder.Entity("Entities.Entidades.Mensalidade", b =>
                 {
-                    b.Property<int>("MensalidadeID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MensalidadeID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AlunoID")
                         .HasColumnType("int");
@@ -220,11 +225,15 @@ namespace Infra.Migrations
                     b.Property<DateTime>("DataVencimento")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MensalidadeID");
+                    b.HasKey("Id");
 
                     b.HasIndex("AlunoID");
 
@@ -252,11 +261,11 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Entities.Entidades.Podio", b =>
                 {
-                    b.Property<int>("PodioID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PodioID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AlunoID")
                         .HasColumnType("int");
@@ -264,10 +273,14 @@ namespace Infra.Migrations
                     b.Property<int>("CompeticaoID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ResultadoID")
                         .HasColumnType("int");
 
-                    b.HasKey("PodioID");
+                    b.HasKey("Id");
 
                     b.HasIndex("AlunoID");
 
@@ -280,17 +293,17 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Entities.Entidades.Professor", b =>
                 {
-                    b.Property<int>("ProfessorID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfessorID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProfessorID");
+                    b.HasKey("Id");
 
                     b.ToTable("Professor");
                 });
@@ -584,7 +597,7 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Entities.Entidades.AplicationUser", null)
+                    b.HasOne("Entities.Entidades.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -593,7 +606,7 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Entities.Entidades.AplicationUser", null)
+                    b.HasOne("Entities.Entidades.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -608,7 +621,7 @@ namespace Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Entidades.AplicationUser", null)
+                    b.HasOne("Entities.Entidades.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -617,7 +630,7 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Entities.Entidades.AplicationUser", null)
+                    b.HasOne("Entities.Entidades.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

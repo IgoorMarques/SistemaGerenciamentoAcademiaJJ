@@ -26,10 +26,8 @@ namespace Infra.Repositorio
             using (var banco = new ContextBase(_OptionsBuilder))
             {
                 return await(from AT in banco.alunosTurmas
-                             join A in banco.alunos on AT.AlunoID equals A.AlunoID
+                             join A in banco.alunos on AT.AlunoID equals A.Id
                              select A).AsNoTracking().ToListAsync();
-
-
             }
         }
     }

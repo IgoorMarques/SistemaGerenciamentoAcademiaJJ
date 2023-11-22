@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class addmydatabase : Migration
+    public partial class SistemaAcademiaBJJ : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,18 +15,18 @@ namespace Infra.Migrations
                 name: "Academia",
                 columns: table => new
                 {
-                    AcademiaID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telefone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UsuarioLogin = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SenhaHash = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    SenhaHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Academia", x => x.AcademiaID);
+                    table.PrimaryKey("PK_Academia", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,6 +48,7 @@ namespace Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    USER_NOME = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -72,40 +73,40 @@ namespace Infra.Migrations
                 name: "Competicao",
                 columns: table => new
                 {
-                    CompeticaoID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Competicao", x => x.CompeticaoID);
+                    table.PrimaryKey("PK_Competicao", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Faixa",
                 columns: table => new
                 {
-                    FaixaID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descricao = table.Column<int>(type: "int", nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Faixa", x => x.FaixaID);
+                    table.PrimaryKey("PK_Faixa", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Professor",
                 columns: table => new
                 {
-                    ProfessorID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Professor", x => x.ProfessorID);
+                    table.PrimaryKey("PK_Professor", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,7 +115,7 @@ namespace Infra.Migrations
                 {
                     ResultadoID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descricao = table.Column<int>(type: "int", nullable: false)
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -232,19 +233,19 @@ namespace Infra.Migrations
                 columns: table => new
                 {
                     FaixaID = table.Column<int>(type: "int", nullable: false),
-                    AlunoID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Aluno", x => x.AlunoID);
+                    table.PrimaryKey("PK_Aluno", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Aluno_Faixa_FaixaID",
                         column: x => x.FaixaID,
                         principalTable: "Faixa",
-                        principalColumn: "FaixaID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -265,7 +266,7 @@ namespace Infra.Migrations
                         name: "FK_Turma_Professor_ProfessorID",
                         column: x => x.ProfessorID,
                         principalTable: "Professor",
-                        principalColumn: "ProfessorID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -273,21 +274,22 @@ namespace Infra.Migrations
                 name: "Mensalidade",
                 columns: table => new
                 {
-                    MensalidadeID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataVencimento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataPagamento = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AlunoID = table.Column<int>(type: "int", nullable: false)
+                    AlunoID = table.Column<int>(type: "int", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mensalidade", x => x.MensalidadeID);
+                    table.PrimaryKey("PK_Mensalidade", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Mensalidade_Aluno_AlunoID",
                         column: x => x.AlunoID,
                         principalTable: "Aluno",
-                        principalColumn: "AlunoID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -305,13 +307,13 @@ namespace Infra.Migrations
                         name: "FK_ParticipacaoCompeticao_Aluno_AlunoID",
                         column: x => x.AlunoID,
                         principalTable: "Aluno",
-                        principalColumn: "AlunoID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ParticipacaoCompeticao_Competicao_CompeticaoID",
                         column: x => x.CompeticaoID,
                         principalTable: "Competicao",
-                        principalColumn: "CompeticaoID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -319,26 +321,27 @@ namespace Infra.Migrations
                 name: "Podio",
                 columns: table => new
                 {
-                    PodioID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompeticaoID = table.Column<int>(type: "int", nullable: false),
                     AlunoID = table.Column<int>(type: "int", nullable: false),
-                    ResultadoID = table.Column<int>(type: "int", nullable: false)
+                    ResultadoID = table.Column<int>(type: "int", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Podio", x => x.PodioID);
+                    table.PrimaryKey("PK_Podio", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Podio_Aluno_AlunoID",
                         column: x => x.AlunoID,
                         principalTable: "Aluno",
-                        principalColumn: "AlunoID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Podio_Competicao_CompeticaoID",
                         column: x => x.CompeticaoID,
                         principalTable: "Competicao",
-                        principalColumn: "CompeticaoID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Podio_Resultado_ResultadoID",
@@ -361,7 +364,7 @@ namespace Infra.Migrations
                         name: "FK_AlunoTurma_Aluno_AlunoID",
                         column: x => x.AlunoID,
                         principalTable: "Aluno",
-                        principalColumn: "AlunoID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AlunoTurma_Turma_TurmaID",

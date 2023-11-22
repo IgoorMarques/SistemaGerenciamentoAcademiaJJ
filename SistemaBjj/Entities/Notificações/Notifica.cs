@@ -13,12 +13,14 @@ namespace Entities.Notificações
         {
             Notificacoes = new List<Notifica>();
         }
+
         [NotMapped]
         public string NomePropriedade { get; set; }
         [NotMapped]
         public string Mensagem { get; set; }
         [NotMapped]
         public List<Notifica> Notificacoes;
+
 
         public bool ValidaPropriedadeString(string valor, string nomePropriedade)
         {

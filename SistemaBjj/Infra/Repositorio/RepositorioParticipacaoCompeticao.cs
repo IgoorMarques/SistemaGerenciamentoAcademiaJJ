@@ -44,7 +44,7 @@ namespace Infra.Repositorio
             using (var banco = new ContextBase(_OptionsBuider))
             {
                 return await (from PC in banco.participacaoCompeticaos
-                              join A in banco.alunos on PC.AlunoID equals A.AlunoID
+                              join A in banco.alunos on PC.AlunoID equals A.Id
                               select A).AsNoTracking().ToListAsync();
             }
         }
@@ -54,7 +54,7 @@ namespace Infra.Repositorio
             using(var banco = new ContextBase(_OptionsBuider))
             {
                 return await (from PC in banco.participacaoCompeticaos
-                              join A in banco.alunos on PC.AlunoID equals A.AlunoID
+                              join A in banco.alunos on PC.AlunoID equals A.Id
                               select A).AsNoTracking().CountAsync();
             }
         }

@@ -180,3 +180,4 @@ C:\Users\irlan\source\repos\SistemaGerenciamentoAcademiaJJ\SistemaBjj\WebAPI\obj
 C:\Users\irlan\source\repos\SistemaGerenciamentoAcademiaJJ\SistemaBjj\WebAPI\obj\Debug\net7.0\WebAPI.pdb
 C:\Users\irlan\source\repos\SistemaGerenciamentoAcademiaJJ\SistemaBjj\WebAPI\obj\Debug\net7.0\WebAPI.genruntimeconfig.cache
 C:\Users\irlan\source\repos\SistemaGerenciamentoAcademiaJJ\SistemaBjj\WebAPI\obj\Debug\net7.0\ref\WebAPI.dll
+C:\Users\irlan\source\repos\SistemaGerenciamentoAcademiaJJ\SistemaBjj\WebAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

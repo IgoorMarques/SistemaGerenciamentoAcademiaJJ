@@ -11,7 +11,5 @@ namespace Entities.Entidades
     [Table("Faixa")]
     public class Faixa : Base
     {
-        public int FaixaID { get; set; }
-        public String Descricao { get; set; }
     }
 }

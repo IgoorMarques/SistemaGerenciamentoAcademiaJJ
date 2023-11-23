@@ -12,5 +12,6 @@ namespace Domain.Interfaces.ITurma
     {
         Task<IList<Turma>> ListarTodasAsTurmas();
         Task<Turma> BuscarTurmaID(int turmaID);
+        Task<bool> ExcluirTurma(int turmaID);
     }
 }

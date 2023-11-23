@@ -28,6 +28,25 @@ namespace Infra.Repositorio
             }
         }
 
+        public async Task<bool> ExcluirTurma(int turmaID)
+        {
+            using (var banco = new ContextBase(_OptionsBuilder))
+            {
+                var turma = await banco.turmas.FindAsync(turmaID);
+                if(turma == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    await banco.turmas.Where(T=>T.TurmaID.Equals(turmaID)).ExecuteDeleteAsync();
+                    await banco.alunosTurmas.Where(T => T.TurmaID.Equals(turmaID)).ExecuteDeleteAsync();
+                    return true;
+                }
+                
+            }
+        }
+
         public async Task<IList<Turma>> ListarTodasAsTurmas()
         {
             using (var banco = new ContextBase(_OptionsBuilder))

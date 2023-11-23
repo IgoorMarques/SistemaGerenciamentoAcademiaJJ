@@ -17,13 +17,11 @@ namespace WebAPI.Controllers
         private readonly InterfaceAluno _interfaceAluno;
         private readonly IAlunoServico _interfaceAlunoServico;
 
-
         public AlunoController(InterfaceAluno interfaceAluno, IAlunoServico interfaceAlunoServico)
         {
             _interfaceAluno = interfaceAluno;
             _interfaceAlunoServico = interfaceAlunoServico;
         }
-
 
         [HttpGet("/api/ListaAlunosAcademia")]
         [Produces("application/json")]
@@ -31,7 +29,6 @@ namespace WebAPI.Controllers
         {
             return await _interfaceAluno.ListarTodosAlunos();  
         }
-
 
         [HttpPost("/api/AdicionarAluno")]
         [Produces("application/json")]
@@ -46,9 +43,6 @@ namespace WebAPI.Controllers
             await _interfaceAlunoServico.CadastrarAluno(novoAluno);
             return Task.FromResult(novoAluno);
         }
-
-
-
 
         private bool ValidaInputAnluno(InputAlunoModel inputAluno)
         {

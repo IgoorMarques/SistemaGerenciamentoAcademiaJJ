@@ -27,9 +27,9 @@ namespace Domain.Servicos
             await _interfaceTurma.Update(turma);
         }
 
-        public async Task ExcluirTurma(Turma turma)
+        public async Task ExcluirTurma(int turmaID)
         {
-            await _interfaceTurma.Delete(turma);
+            await _interfaceTurma.ExcluirTurma(turmaID);
         }
     }
 }

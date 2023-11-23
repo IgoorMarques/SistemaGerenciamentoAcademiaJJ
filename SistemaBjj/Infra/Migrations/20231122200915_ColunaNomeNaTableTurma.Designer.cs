@@ -4,6 +4,7 @@ using Infra.Configuracao;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(ContextBase))]
-    partial class ContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20231122200915_ColunaNomeNaTableTurma")]
+    partial class ColunaNomeNaTableTurma
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,7 +347,13 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProfessorID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.HasKey("TurmaID");
+
+                    b.HasIndex("ProfessorID");
 
                     b.ToTable("Turma");
                 });
@@ -571,6 +580,17 @@ namespace Infra.Migrations
                     b.Navigation("Competicao");
 
                     b.Navigation("Resultado");
+                });
+
+            modelBuilder.Entity("Entities.Entidades.Turma", b =>
+                {
+                    b.HasOne("Entities.Entidades.Professor", "Professor")
+                        .WithMany()
+                        .HasForeignKey("ProfessorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Professor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

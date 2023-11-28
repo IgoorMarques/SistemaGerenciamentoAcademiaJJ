@@ -12,6 +12,7 @@ namespace Entities.Entidades
     public class Base : Notifica
     {
         [Display(Name = "Código")]
+        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Nome")]

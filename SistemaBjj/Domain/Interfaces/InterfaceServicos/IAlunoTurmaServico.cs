@@ -10,6 +10,6 @@ namespace Domain.Interfaces.InterfaceServicos
     public interface IAlunoTurmaServico
     {
         Task AdicionarAlunoTurma(AlunoTurma alunoTurma);
-        Task RemoverAlunoTurma(AlunoTurma alunoTurma);
+        Task<bool> RemoverAlunoTurma(AlunoTurma alunoTurma);
     }
 }

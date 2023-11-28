@@ -26,11 +26,11 @@ namespace WebAPI.Controllers
         [HttpPost("/api/CreateToken")]
         public async Task<IActionResult> CreateToken([FromBody] InputModel inputModel)
         {
-            if (string.IsNullOrWhiteSpace(inputModel.Email) || string.IsNullOrWhiteSpace(inputModel.Senha))
+            if (string.IsNullOrWhiteSpace(inputModel.Login) || string.IsNullOrWhiteSpace(inputModel.Senha))
             {
                 return Unauthorized();
             }
-            var result = await _signInManager.PasswordSignInAsync(inputModel.Email, inputModel.Senha, false, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(inputModel.Login, inputModel.Senha, false, lockoutOnFailure: false);
             
             if (result.Succeeded)
             {

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace Infra.Configuracao
         public DbSet<Professor> professores { set; get; }
         public DbSet<Resultado> resultados { set; get; }
         public DbSet<Turma> turmas { set; get; }
+        public DbSet<ProfessorTurma> professorTurmas { set; get; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,8 +42,26 @@ namespace Infra.Configuracao
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUser>().ToTable("AspNetUsers").HasKey(t => t.Id);
+
+            builder.Entity<Turma>().ToTable("Turma").HasKey(t => t.TurmaID);
+      
             builder.Entity<AlunoTurma>().ToTable("AlunoTurma").HasNoKey();
+
             builder.Entity<ParticipacaoCompeticao>().ToTable("ParticipacaoCompeticao").HasNoKey();
+
+            builder.Entity<ProfessorTurma>()
+            .HasKey(pt => new { pt.ProfessorID, pt.TurmaID });
+
+            builder.Entity<ProfessorTurma>()
+                .HasOne(pt => pt.Professor)
+                .WithMany(p => p.ProfessorTurmas)
+                .HasForeignKey(pt => pt.ProfessorID);
+
+            builder.Entity<ProfessorTurma>()
+                .HasOne(pt => pt.Turma)
+                .WithMany(t => t.ProfessorTurmas)
+                .HasForeignKey(pt => pt.TurmaID);
+   
             base.OnModelCreating(builder);
         }
 

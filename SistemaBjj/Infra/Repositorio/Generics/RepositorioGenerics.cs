@@ -42,7 +42,14 @@ namespace Infra.Repositorio.Generics
         {
             using (var data = new ContextBase(_OptionsBuilder))
             {
-                return await data.Set<T>().FindAsync(ID);
+                var result = await data.Set<T>()
+                    .FindAsync(ID);
+
+                if(result == null)
+                {
+                    throw new Exception("Não encontrado");
+                }
+                return result;
             }
         }
 

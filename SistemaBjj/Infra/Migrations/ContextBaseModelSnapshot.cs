@@ -88,13 +88,13 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Entities.Entidades.AlunoTurma", b =>
                 {
-                    b.Property<int>("AlunoID")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<int>("TurmaID")
                         .HasColumnType("int");
 
-                    b.HasIndex("AlunoID");
+                    b.HasIndex("Id");
 
                     b.HasIndex("TurmaID");
 
@@ -293,19 +293,34 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Entities.Entidades.Professor", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProfessorID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProfessorID"));
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProfessorID");
 
                     b.ToTable("Professor");
+                });
+
+            modelBuilder.Entity("Entities.Entidades.ProfessorTurma", b =>
+                {
+                    b.Property<int>("ProfessorID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TurmaID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProfessorID", "TurmaID");
+
+                    b.HasIndex("TurmaID");
+
+                    b.ToTable("ProfessorTurma");
                 });
 
             modelBuilder.Entity("Entities.Entidades.Resultado", b =>
@@ -334,19 +349,17 @@ namespace Infra.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TurmaID"));
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("Horario")
                         .HasColumnType("time");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TurmaID");
 
-                    b.ToTable("Turma");
+                    b.ToTable("Turma", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -501,7 +514,7 @@ namespace Infra.Migrations
                 {
                     b.HasOne("Entities.Entidades.Aluno", "Aluno")
                         .WithMany()
-                        .HasForeignKey("AlunoID")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -573,6 +586,25 @@ namespace Infra.Migrations
                     b.Navigation("Resultado");
                 });
 
+            modelBuilder.Entity("Entities.Entidades.ProfessorTurma", b =>
+                {
+                    b.HasOne("Entities.Entidades.Professor", "Professor")
+                        .WithMany("ProfessorTurmas")
+                        .HasForeignKey("ProfessorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Entidades.Turma", "Turma")
+                        .WithMany("ProfessorTurmas")
+                        .HasForeignKey("TurmaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Professor");
+
+                    b.Navigation("Turma");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -622,6 +654,16 @@ namespace Infra.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Entidades.Professor", b =>
+                {
+                    b.Navigation("ProfessorTurmas");
+                });
+
+            modelBuilder.Entity("Entities.Entidades.Turma", b =>
+                {
+                    b.Navigation("ProfessorTurmas");
                 });
 #pragma warning restore 612, 618
         }

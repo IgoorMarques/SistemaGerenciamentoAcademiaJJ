@@ -23,8 +23,9 @@ namespace Infra.Repositorio
         {
             using (var banco = new ContextBase(_OptionsBuilder))
             {
-                return await banco.turmas.Where(T => T.TurmaID.Equals(turmaID))
-                    .FirstOrDefaultAsync();
+                return await banco.turmas
+                    .Where(A => A.TurmaID.Equals(turmaID))
+                    .FirstAsync();
             }
         }
 
@@ -51,7 +52,8 @@ namespace Infra.Repositorio
         {
             using (var banco = new ContextBase(_OptionsBuilder))
             {
-                return await banco.turmas.AsNoTracking().ToListAsync();
+                var turmas = await banco.turmas.ToListAsync();
+                return turmas;
             }
         }
     }

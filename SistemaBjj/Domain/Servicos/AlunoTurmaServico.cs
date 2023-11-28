@@ -13,6 +13,7 @@ namespace Domain.Servicos
     public class AlunoTurmaServico : IAlunoTurmaServico
     {
         private readonly InterfaceAlunoTurma _interfaceTurma;
+
         public AlunoTurmaServico(InterfaceAlunoTurma interfaceTurma)
         {
             _interfaceTurma =  interfaceTurma;
@@ -22,17 +23,21 @@ namespace Domain.Servicos
             if (ValidaAlunoTurma(alunoTurma)) await _interfaceTurma.Add(alunoTurma);
         }
 
-        public async Task RemoverAlunoTurma(AlunoTurma alunoTurma)
+
+
+        public async Task<bool> RemoverAlunoTurma(AlunoTurma alunoTurma)
         {
             if (ValidaAlunoTurma(alunoTurma))
             {
-               await _interfaceTurma.Delete(alunoTurma);
+                await _interfaceTurma.Delete(alunoTurma);
+                return true;
             }
+            return false;
         }
 
         private bool ValidaAlunoTurma(AlunoTurma alunoTurma)
         {
-            if (alunoTurma.TurmaID < 0 || alunoTurma.AlunoID < 0)
+            if (alunoTurma.TurmaID < 0 || alunoTurma.Id < 0)
             {
                 return false;
             }

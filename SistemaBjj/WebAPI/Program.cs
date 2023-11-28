@@ -9,6 +9,7 @@ using Domain.Interfaces.InterfaceServicos;
 using Domain.Interfaces.IParticipacaoCompeticao;
 using Domain.Interfaces.IPodio;
 using Domain.Interfaces.IProfessor;
+using Domain.Interfaces.IProfessorTurma;
 using Domain.Interfaces.IResultado;
 using Domain.Interfaces.ITurma;
 using Domain.Servicos;
@@ -49,6 +50,7 @@ builder.Services.AddSingleton<InterfacePodio, RepositorioPodio>();
 builder.Services.AddSingleton<InterfaceProfessor, RepositorioProfessor>();
 builder.Services.AddSingleton<InterfaceResultado, RepositorioResultado>();
 builder.Services.AddSingleton<InterfaceTurma, RepositorioTurma>();
+builder.Services.AddSingleton<InterfaceProfessorTurma, RepositorioProfessorTurma>();
 
 
 // SERVIÇO DOMINIO
@@ -62,6 +64,7 @@ builder.Services.AddSingleton<IParticipacaoCompeticaoServico, ParticipacaoCompet
 builder.Services.AddSingleton<IPodioServico, PodioServico>();
 builder.Services.AddSingleton<IProfessorServico, ProfessorServico>();
 builder.Services.AddSingleton<IResultadoServico, ResultadoServico>();
+builder.Services.AddSingleton<ITurmaServico, TurmaServico>();
 builder.Services.AddSingleton<ITurmaServico, TurmaServico>();
 
 

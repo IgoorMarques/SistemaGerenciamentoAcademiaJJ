@@ -20,7 +20,7 @@ namespace Domain.Servicos
 
         private bool ValidaProfessor(Professor professor)
         {
-            return professor.ValidaPropriedadeString(professor.Nome, "Nome");
+            return true;
         }
 
         public async Task AdicionarNovoProfessor(Professor professor)

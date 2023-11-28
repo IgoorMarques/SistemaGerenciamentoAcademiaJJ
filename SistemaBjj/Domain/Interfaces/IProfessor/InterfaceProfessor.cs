@@ -10,6 +10,6 @@ namespace Domain.Interfaces.IProfessor
 {
     public interface InterfaceProfessor : InterfaceGeneric<Professor>
     {
-
+        Task<IList<Professor>> ListarProfessores();
     }
 }

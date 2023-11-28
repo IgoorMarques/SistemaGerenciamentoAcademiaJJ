@@ -12,5 +12,8 @@ namespace Domain.Interfaces.InterfaceServicos
         Task CriarTurma(Turma turma);
         Task ExcluirTurma(int turmaID);
         Task EditarTurma(Turma turma, int turmaID);
+        Task<Object> ListarProfessoresTurma(int turmaID);
+        Task<Object> RemoverProfessorTurma(int turmaID);
+        Task<Object> AdicionarProfessorTurma(ProfessorTurma professorTurma);
     }
 }

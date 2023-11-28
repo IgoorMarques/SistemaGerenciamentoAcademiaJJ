@@ -11,7 +11,7 @@ namespace Entities.Entidades
     public class AlunoTurma
     {
         [ForeignKey("Aluno")]
-        public int AlunoID { get; set; }
+        public int Id { get; set; }
         public Aluno Aluno { get; set; }
 
         [ForeignKey("Turma")]
